@@ -25,6 +25,9 @@
 
 // Building a server
 const http = require('http')
+
+const fs = require('fs')
+const home = fs.readFileSync('./index.html','utf-8')
 const port= 8080
 const server = http.createServer((req,res) =>{
     if(req.url==="/about"){
@@ -38,10 +41,10 @@ const server = http.createServer((req,res) =>{
         res.end("servce page")
     }
     if(req.url==='/'){
-        res.end("<h1>Home page</h1>")
+       return  res.end(home)
     }
-    else{
-        req.end("Nothings")
+    else{ 
+        res.end("Nothings")
     }
 })
 server.listen(port,"localhost",()=>{
